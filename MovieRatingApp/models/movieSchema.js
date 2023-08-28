@@ -21,6 +21,14 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  director:{
+    type: String,
+    required: true,
+  },
+  time:{
+    type: String,
+    required: true
+  },
   createdAt: {
     type: Date,
     immutable: true,

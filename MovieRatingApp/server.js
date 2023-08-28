@@ -1,14 +1,19 @@
 const express = require("express");
+//const cors =require("cors")
 const app = express();
 const serverConfig = require("./configs/server.config");
 const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
 const dbConfig = require("./configs/db.config");
-//const init = require("./init");
+const init = require("./init");
 
+
+//app.use(cors())
 app.use(bodyparser.json());
 
 app.use(bodyparser.urlencoded({ extended: true })); //extended:true  accept  other  Datatype also  beside string
+app.use(express.static("public"));
+
 
 mongoose.connect(dbConfig.DB_URL);
 mongoose.set("strictQuery", false);
@@ -20,7 +25,7 @@ db.on("error", () => {
 
 db.once("open", () => {
   console.log("connected to mongodb");
-  //init();
+  init();
 });
 
 
